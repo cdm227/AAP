@@ -29,4 +29,4 @@
 
     - name: Print a hello message
       ansible.builtin.debug:
-        msg: "This is a test run on localhost!"
+        msg: "This is a test run on localhost sucacommit!"
