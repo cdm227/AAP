@@ -32,3 +32,11 @@
         name: nginx
         state: started
         enabled: true
+
+- name: Run on localhost for testing
+  hosts: local
+  gather_facts: false
+  tasks:
+    - name: Print a hello message
+      debug:
+        msg: "This is a test run on localhost!"
