@@ -28,5 +28,5 @@
         enabled: true
 
     - name: Print a hello message
-      debug:
-        msg: "This is a test run on localhost!"
+      ansible.builtin.debug:
+    msg: "This is a test run on localhost!"
