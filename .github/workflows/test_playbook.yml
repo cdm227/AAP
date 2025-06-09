@@ -1,0 +1,24 @@
+name: Test Ansible Playbook on Localhost
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test-ansible:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install Ansible
+        run: pip install ansible
+
+      - name: Run Ansible Playbook on Localhost
+        run: |
+          ansible-playbook -i inventory/hosts.ini playbooks/deploy_web_server.yml -u $USER
