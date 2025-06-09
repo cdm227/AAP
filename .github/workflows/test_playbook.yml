@@ -21,4 +21,4 @@ jobs:
 
       - name: Run Ansible Playbook on Localhost
         run: |
-          ansible-playbook -i inventory/hosts.ini playbooks/deploy_web_server.yml -u $USER
+          ansible-playbook -i my-ansible-project/inventory/hosts.ini my-ansible-project/playbooks/deploy_playbook.yml -u $USER
