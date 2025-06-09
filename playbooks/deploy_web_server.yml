@@ -2,7 +2,7 @@
   hosts: all
   become: true
   pre_tasks:
-    - name: Set SSH user for Ubuntu 
+    - name: Set SSH user for Ubuntu
       ansible.builtin.set_fact:
         ansible_user: ubuntu
       when: ansible_os_family == "Debian"
