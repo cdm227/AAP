@@ -1,0 +1,84 @@
+- name: Install and Configure Nginx
+  hosts: all
+  become: true
+  pre_tasks:
+    - name: Set SSH user for Ubuntu
+      ansible.builtin.set_fact:
+        ansible_user: ubuntu
+      when: ansible_os_family == "Debian"
+
+  tasks:
+    - name: Install Nginx Web Server
+      ansible.builtin.apt:
+        update_cache: true
+        name: nginx
+        state: present
+
+    - name: Create index.html
+      ansible.builtin.copy:
+        dest: "/var/www/html/index.html"
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head><title>Server Details</title></head>
+          <body>
+          <h1>Served from {{ ansible_hostname }}</h1>
+          </body>
+          </html>
+        mode: '0644'
+
+    - name: Ensure Nginx is running and enabled
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
+We see that the workflow has been executed successfully, which means our file syntax follows best practices:
+
+deploy ansible with github actions
+3. Handle sensitive data in GitHub Actions
+You can leverage Environment and Repository GitHub Secrets to avoid storing sensitive information in configuration and code files. In this example, let’s create two repository secrets. 
+
+Go to Repository → Settings → Secrets and variables → Actions. Here, you have to select the New repository secret option and configure the secret ANSIBLE_USER storing the value ubuntu:
+
+ansible sensitive data in GitHub Actions
+Similarly, create a secret SSH_PRIVATE_KEY and store the content of the private SSH key to connect to the remote target server. 
+
+4. Deploy the Ansible Playbook with GitHub Actions
+Next, define another workflow file to automate running an Ansible Playbook against remote targets. Create a new file, deploy_playbook.yml, under the .github/workflows directory.
+
+deploy_playbook.yml
+
+name: Deploy with Ansible
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+
+jobs:
+  deploy:
+    name: Deploy Ansible Playbook
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up SSH
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key.pem
+          chmod 600 private_key.pem
+          
+      - name: Install Ansible
+        shell: bash
+        run: |
+          sudo apt update
+          sudo apt install -y ansible
+
+      - name: Run Ansible Playbook
+        env:
+          ANSIBLE_USER: ${{ secrets.ANSIBLE_USER }}
+          ANSIBLE_HOST_KEY_CHECKING: False
+        run: |
+          ansible-playbook -i inventory/hosts.ini playbooks/deploy_web_server.yml --private-key private_key.pem -u ${{ secrets.ANSIBLE_USER }}
