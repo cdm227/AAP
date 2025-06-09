@@ -1,20 +1,25 @@
-# GitHub Actions Playground
+# ANSIBLE AUTOMATION PLATFORM & GH ACTIONs
 
-> Thank you for trying the GitHub Actions Playground! This repository is no longer being maintained and is now archived.
-Please visit [GitHub Skills](https://skills.github.com/) to continue your GitHub learning journey
+      Some examples of playbooks | Related Job Workflows
 
-Welcome to the GitHub Actions Playground! We've got everything fired up and running for you to explore GitHub Actions.
+    Localhost: playbooks/deploy_playbook.yml | .github/workflows/test_playbook.yml
+    WEB : playbooks/deploy_web_server.yml | .github/workflows/deploy_playbook.yml
 
-Everything you do here is contained within this one codespace. There is no repository on GitHub yet. As part of this exercise we'll prompt you to publish a repository to help you see workflows in action. If you were just exploring and haven't published to a repository, you can simply delete your codespace and any related changes made in that codespace will be gone forever.
+!! Still missing valid secrets and ssh_key 
 
-## Instructions for using the Playground
+----
+> Error on the MR is knonw!! given that we are playing with dummy IPs and no SSH
 
-If you have forked this repository and would like to use this as a codespace template:
+----
 
-1. Visit `https://github.com/<organization>/<repository>/settings`
-2. Check the box next to General > Template repository
-3. Visit `https://github.com/<organization>/<repository>`
-4. Click "Use this template" button at the top right
-5. Click "Open in a codespace"
+DEFINE when to trigger Ansible playbooks
 
-If you need to delete the codespace, you can do this at [https://github.com/codespaces](https://github.com/codespaces)
+
+> .github/workflows/int_ansible.yml
+
+
+---
+
+
+_MAKE SURE YOU HAVE ALL IN THE RIGHT PLACE_
+my-ansible-project/inventory/hosts.ini
