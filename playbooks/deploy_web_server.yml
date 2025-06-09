@@ -1,5 +1,5 @@
 - name: Install and Configure Nginx
-  hosts: all
+  hosts: local
   become: true
   pre_tasks:
     - name: Set SSH user for Ubuntu
