@@ -1,0 +1,7 @@
+title: Ansible Automation Platform & GitHub Actions
+description: Examples and documentation for automating with Ansible and GitHub Actions.
+theme: just-the-docs
+color_scheme: dark
+logo: /assets/banner.png   # Optional: Add your logo here if you have one
+aux_links:
+  Repository: https://github.com/cdm227/AAP
