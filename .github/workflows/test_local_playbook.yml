@@ -26,4 +26,4 @@ jobs:
 
       - name: Run Ansible Playbook
         run: |
-          ansible-playbook path/to/your/playbook.yml --syntax-check
+          ansible-playbook -i my-ansible-project/inventory/hosts.ini playbooks/deploy_local_playbook.yml -u $USER
