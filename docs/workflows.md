@@ -4,12 +4,12 @@ Example workflows for automating with Ansible:
 
 ## Test Playbook Workflow
 
-- **File:** `.github/workflows/test_playbook.yml`
-- **Runs:** `playbooks/deploy_playbook.yml` on localhost
+- **File:** `.github/workflows/test_local_playbook.yml`
+- **Runs:** `playbooks/deploy_local_playbook.yml` on localhost
 
 ## Deploy Playbook Workflow
 
-- **File:** `.github/workflows/deploy_playbook.yml`
+- **File:** `.github/workflows/deploy_webserv_playbook.yml`
 - **Runs:** `playbooks/deploy_web_server.yml` on target hosts
 
 ## Integration Workflow
