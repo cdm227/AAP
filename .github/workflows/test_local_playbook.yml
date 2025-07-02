@@ -1,15 +1,15 @@
-name: Test Local Ansible Playbook
+---
+name: Test Local Playbook
 
 on:
   push:
-    branches: [main]
+    branches: ["main"]
   pull_request:
-    branches: [main]
+    branches: ["main"]
 
 jobs:
-  test-playbook:
+  test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -17,13 +17,14 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: '3.11'
 
-      - name: Install Ansible
+      - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install ansible
+          pip install -r requirements.txt
 
       - name: Run Ansible Playbook
         run: |
-          ansible-playbook -i my-ansible-project/inventory/hosts.ini playbooks/deploy_local_playbook.yml -u $USER
+          ansible-playbook -i my-ansible-project/inventory/hosts.ini \
+            playbooks/deploy_local_playbook.yml \
+            -u $USER
