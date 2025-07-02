@@ -4,14 +4,14 @@ This project includes sample Ansible playbooks to help you automate:
 
 ## Localhost Playbook
 
-- **File:** `playbooks/deploy_playbook.yml`
-- **Workflow:** `.github/workflows/test_playbook.yml`
+- **File:** `playbooks/deploy_local_playbook.yml`
+- **Workflow:** `.github/workflows/test_local_playbook.yml`
 - **Purpose:** Run a simple deployment on localhost for testing purposes.
 
 ## Web Server Playbook
 
 - **File:** `playbooks/deploy_web_server.yml`
-- **Workflow:** `.github/workflows/deploy_playbook.yml`
+- **Workflow:** `.github/workflows/deploy_webserv_playbook.yml`
 - **Purpose:** Deploy and configure a web server on your target hosts.
 
 ## Inventory
